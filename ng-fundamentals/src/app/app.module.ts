@@ -11,6 +11,9 @@ import { ToastrModule } from "ngx-toastr";
 import { EventDetailsComponent } from "./events/event-details/event-details.component";
 import { appRoutes } from "./routes";
 import { CreateEventComponent } from "./events/create-event.component";
+import { Error404Component } from "./errors/404.component";
+import { EventRouteActivator } from "./events/event-details/event-route-activator.service";
+import { EventListResolver } from "./events/events-list-resolver.service";
 
 @NgModule({
   declarations: [
@@ -19,14 +22,30 @@ import { CreateEventComponent } from "./events/create-event.component";
     EventThumbnailComponent,
     CreateEventComponent,
     NavBarComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [EventService],
+  providers: [
+    EventService,
+    EventRouteActivator,
+    {
+      provide: "canDeactivateCreateEvent",
+      useValue: checkDirtyState
+    },
+    EventListResolver
+  ],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule {}
+
+export function checkDirtyState(component: CreateEventComponent) {
+  if (component.isDirty)
+    return window.confirm("You have unsaved changes, do you wish to cancel?");
+
+  return true;
+}
