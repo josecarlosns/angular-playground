@@ -7,7 +7,10 @@ import { Component, Input } from "@angular/core";
       <h2>{{ event?.name }}</h2>
       <div>Date: {{ event?.date }}</div>
       <div
-        [style.color]="event?.time === '8:00 am' ? '#003300' : '#bbb'"
+        [ngStyle]="{
+          color: event?.time === '8:00 am' ? '#003300' : '#bbb',
+          'font-weight': event?.time === '8:00 am' ? 'bold' : 'normal'
+        }"
         [ngSwitch]="event?.time"
       >
         Time: {{ event?.time }}
