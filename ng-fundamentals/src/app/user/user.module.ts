@@ -5,11 +5,10 @@ import { FormsModule } from "@angular/forms";
 
 import { ProfileComponent } from "./profile.component";
 import { userRoutes } from "./user.routes";
-import { LoginComponent } from "./login.component";
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(userRoutes), FormsModule],
-  declarations: [ProfileComponent, LoginComponent],
+  declarations: [ProfileComponent],
   providers: []
 })
 export class UserModule {}
