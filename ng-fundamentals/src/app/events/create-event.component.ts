@@ -1,25 +1,60 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { EventService } from "./shared/event.service";
 
 @Component({
-  template: `
-    <h1>New Event</h1>
-    <hr />
-    <div class="col-md-6">
-      <h3>Form here</h3>
-      <br />
-      <br />
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button type="submit" class="btn btn-default" (click)="cancel()">
-        Cancel
-      </button>
-    </div>
-  `
+  templateUrl: "./create-event.component.html",
+  styles: [
+    `
+      em {
+        float: right;
+        color: #e05c65;
+        padding-left: 10px;
+      }
+      .error input {
+        background-color: #e3c3c5;
+      }
+      .error ::-webkit-input-placeholder {
+        color: #999;
+      }
+      .error ::-moz-placeholder {
+        color: #999;
+      }
+      .error :-moz-placeholder {
+        color: #999;
+      }
+      .error :ms-input-placeholder {
+        color: #999;
+      }
+    `
+  ]
 })
-export class CreateEventComponent {
+export class CreateEventComponent implements OnInit {
   isDirty = true;
+  event: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private eventService: EventService) {}
+
+  ngOnInit() {
+    this.event = {
+      name: "Angular Connect",
+      date: new Date("9/26/2036"),
+      time: "10:00 am",
+      price: 599.99,
+      imageUrl: "/assets/images/angularconnect-shield.png",
+      location: {
+        address: "1057 DT",
+        city: "London",
+        country: "England"
+      }
+    };
+  }
+
+  saveEvent(formValues) {
+    this.eventService.saveEvent(formValues);
+    this.isDirty = false;
+    this.router.navigate(["/events"]);
+  }
 
   cancel() {
     this.router.navigate(["/events"]);

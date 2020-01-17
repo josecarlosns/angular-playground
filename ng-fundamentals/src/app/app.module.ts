@@ -18,7 +18,7 @@ import {
 } from "./events";
 import { LoginComponent } from "./user/login.component";
 import { AuthService } from "./user/auth.service";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { FormsModule } from "@angular/forms";
     BrowserModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     EventService,
