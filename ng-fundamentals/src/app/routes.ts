@@ -5,7 +5,8 @@ import {
   EventDetailsComponent,
   EventRouteActivator,
   EventsListComponent,
-  EventListResolver
+  EventListResolver,
+  CreateSessionComponent
 } from "./events";
 import { LoginComponent } from "./user/login.component";
 
@@ -15,6 +16,7 @@ export const appRoutes: Routes = [
     component: CreateEventComponent,
     canDeactivate: ["canDeactivateCreateEvent"]
   },
+  { path: "events/session/new", component: CreateSessionComponent },
   {
     path: "events/:id",
     component: EventDetailsComponent,
