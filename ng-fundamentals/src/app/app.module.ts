@@ -15,7 +15,8 @@ import {
   EventService,
   EventRouteActivator,
   EventListResolver,
-  CreateSessionComponent
+  CreateSessionComponent,
+  DurationPipe
 } from "./events";
 import { LoginComponent } from "./user/login.component";
 import { AuthService } from "./user/auth.service";
@@ -35,7 +36,8 @@ import { CollapsibleWellComponent } from "./common/collapsible-well.component";
     LoginComponent,
     CreateSessionComponent,
     SessionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
