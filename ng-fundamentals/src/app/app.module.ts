@@ -20,7 +20,8 @@ import {
 import { LoginComponent } from "./user/login.component";
 import { AuthService } from "./user/auth.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { SessionListComponent } from './events/event-details/session-list.component';
+import { SessionListComponent } from "./events/event-details/session-list.component";
+import { CollapsibleWellComponent } from "./common/collapsible-well.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SessionListComponent } from './events/event-details/session-list.compon
     Error404Component,
     LoginComponent,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent
   ],
   imports: [
     BrowserModule,
