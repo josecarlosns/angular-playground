@@ -23,6 +23,11 @@ import { AuthService } from "./user/auth.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SessionListComponent } from "./events/event-details/session-list.component";
 import { CollapsibleWellComponent } from "./common/collapsible-well.component";
+import { JQ_TOKEN } from "./common/jquery.service";
+import { SimpleModalComponent } from "./common/simple-modal.component";
+import { ModalTriggerDirective } from "./common/modal-trigger.directive";
+
+let jquery = window["$"];
 
 @NgModule({
   declarations: [
@@ -37,7 +42,9 @@ import { CollapsibleWellComponent } from "./common/collapsible-well.component";
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,8 @@ import { CollapsibleWellComponent } from "./common/collapsible-well.component";
       useValue: checkDirtyState
     },
     EventListResolver,
-    AuthService
+    AuthService,
+    { provide: JQ_TOKEN, useValue: jquery }
   ],
   bootstrap: [EventsAppComponent]
 })
