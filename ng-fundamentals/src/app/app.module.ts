@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { NavBarComponent } from "./nav/navbar.component";
 import { ToastrModule } from "ngx-toastr";
@@ -20,12 +21,13 @@ import {
 } from "./events";
 import { LoginComponent } from "./user/login.component";
 import { AuthService } from "./user/auth.service";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SessionListComponent } from "./events/event-details/session-list.component";
 import { CollapsibleWellComponent } from "./common/collapsible-well.component";
 import { JQ_TOKEN } from "./common/jquery.service";
 import { SimpleModalComponent } from "./common/simple-modal.component";
 import { ModalTriggerDirective } from "./common/modal-trigger.directive";
+import { UpvoteComponent } from "./events/event-details/upvote.component";
+import { VoterService } from "./events/event-details/voter.service";
 
 let jquery = window["$"];
 
@@ -44,7 +46,8 @@ let jquery = window["$"];
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ let jquery = window["$"];
     },
     EventListResolver,
     AuthService,
-    { provide: JQ_TOKEN, useValue: jquery }
+    { provide: JQ_TOKEN, useValue: jquery },
+    VoterService
   ],
   bootstrap: [EventsAppComponent]
 })
