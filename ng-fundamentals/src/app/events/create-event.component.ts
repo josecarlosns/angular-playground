@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { EventService } from "./shared/event.service";
+import { IEvent } from "./shared/event.model";
 
 @Component({
   templateUrl: "./create-event.component.html",
@@ -31,23 +32,25 @@ import { EventService } from "./shared/event.service";
 })
 export class CreateEventComponent implements OnInit {
   isDirty = true;
-  event: any;
+  event: IEvent = {
+    location: {}
+  } as IEvent;
 
   constructor(private router: Router, private eventService: EventService) {}
 
   ngOnInit() {
-    this.event = {
-      name: "Angular Connect",
-      date: new Date("9/26/2036"),
-      time: "10:00 am",
-      price: 599.99,
-      imageUrl: "/assets/images/angularconnect-shield.png",
-      location: {
-        address: "1057 DT",
-        city: "London",
-        country: "England"
-      }
-    };
+    // this.event = {
+    //   name: "Angular Connect",
+    //   date: new Date("9/26/2036"),
+    //   time: "10:00 am",
+    //   price: 599.99,
+    //   imageUrl: "/assets/images/angularconnect-shield.png",
+    //   location: {
+    //     address: "1057 DT",
+    //     city: "London",
+    //     country: "England"
+    //   }
+    // };
   }
 
   saveEvent(formValues) {
